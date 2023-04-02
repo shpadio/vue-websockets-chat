@@ -6,15 +6,19 @@
     <div class="card-input">
       <input v-model="inputValue" placeholder=""/>
     </div>
-      <div class="card-button" @click="">
+      <div class="card-button" @click="login(inputValue)">
         <button>Continue</button>
       </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import {ref} from "vue";
+import {login} from '../api/login'
+const inputValue = ref('')
+console.log(inputValue, 'input value!')
 
-const inputValue = ''
+
 
 
 

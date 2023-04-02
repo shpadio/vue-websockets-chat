@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import Login from "./components/Login.vue";
 import Chat from "./components/Chat/Chat.vue";
-const isLogged = true;
+import {state} from './common/state'
+import {onMounted} from "vue";
+import {test} from "./api/login";
+
+onMounted(async () => {
+  await test('')
+})
+
 </script>
 
 <template class="app">
-    <login v-if="!isLogged"/>
+    <login v-if="!state.isLogged"/>
     <chat v-else/>
 </template>
 
