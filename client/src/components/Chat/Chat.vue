@@ -10,6 +10,9 @@
       <div class="chat-send-button">
         <button>send</button>
       </div>
+      <div class="chat-send-button">
+        <button @click="connect">connect</button>
+      </div>
     </div>
   </div>
 
@@ -20,6 +23,14 @@
 import Message from "./Message.vue";
 import {TMessage} from "../../common/types";
 const messages: TMessage[] = [{username: 'HAsbik', text: 'Hello, world!', time: Date.now()},{username: 'ya', text: 'Hello, world!', time: Date.now()},{username: 'HAsbik', text: 'Hello, world!', time: Date.now()}]
+
+import {socket} from "../../api/socket";
+
+function connect(){
+  console.log(socket,'socket')
+  socket.connect()
+}
+
 </script>
 
 <style scoped>
