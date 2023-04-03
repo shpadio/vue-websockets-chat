@@ -4,22 +4,23 @@
       Enter your username
     </div>
     <div class="card-input">
-      <input v-model="inputValue" placeholder=""/>
+      <input v-model="inputValue" placeholder="" />
     </div>
-      <div class="card-button" @click="login(inputValue)">
-        <button>Continue</button>
-      </div>
+    <div class="card-button">
+      <button @click="loginFunc()">Continue</button>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue";
-import {login} from '../api/login'
-const inputValue = ref('')
-console.log(inputValue, 'input value!')
+import { ref } from "vue";
+import { login } from "../api/login";
 
+const inputValue = ref("");
 
-
+async function loginFunc() {
+  return await login(inputValue.value);
+}
 
 
 </script>
@@ -35,11 +36,11 @@ console.log(inputValue, 'input value!')
   margin: auto;
   border: 3px #ff9c9c solid;
   border-radius: 10px;
- }
+}
 
 .card-title {
   font-size: 24px;
-  font-family: Damascus,monospace;
+  font-family: Damascus, monospace;
 }
 
 .card-input {
@@ -55,7 +56,7 @@ console.log(inputValue, 'input value!')
   padding: 5px;
   height: 30px;
   border: aqua;
-  border-radius: 5px ;
+  border-radius: 5px;
   background: #3a6ff5;
   color: #464444;
 }

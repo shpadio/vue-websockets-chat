@@ -1,24 +1,28 @@
-import express from 'express';
+import express from "express";
 import * as http from "http";
 import * as process from "process";
-import { Server } from 'socket.io';
-import cors from 'cors'
-import router from "./routes/login";
+import { Server } from "socket.io";
+import cors from "cors";
+import loginRouter from "../src/routes/login";
 
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use("/login", loginRouter);
 
-const app = express().use(cors)
-app.use('/', router)
 const server = http.createServer(app);
 const port = process.env.PORT || 8090;
 
-export const io = new Server(server,{
-    cors: {
-        origin: 'http://localhost:5173'
-    }
-})
+export const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173"
+  }
+});
 
-io.on('connection', (socket) => {
-    console.log(`${socket} is connected`)
-})
+io.on("connection", (socket) => {
+  console.log(`${socket} is connected`);
+});
 
-server.listen(port, () => `Server is running on ${port}`)
+server.listen(port, () => {
+  `Server is running on ${port}`;
+});

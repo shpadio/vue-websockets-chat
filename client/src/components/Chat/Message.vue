@@ -1,14 +1,14 @@
 <template>
   <div :class=[messageStyle]>
     <div class="message__user">
-      {{username}}
+      {{ username }}
     </div>
     <div class="message__body">
       <div class="message__text">
-      {{text}}
+        {{ text }}
       </div>
       <div class="message__time">
-        {{time}}
+        {{ time }}
       </div>
     </div>
   </div>
@@ -18,9 +18,9 @@
 interface IMessageProps {
   message: TMessage
 }
-import {TMessage} from "../../common/types";
-const props  = defineProps<IMessageProps>();
-const {message: {username, text, time}} = props
+import { TMessage } from "../../common/types";
+const props = defineProps<IMessageProps>();
+const { message: { username, text, time } } = props
 const isAuthor = username === 'ya';
 
 const messageStyle = isAuthor ? "message_is-author" : 'message';
@@ -28,7 +28,6 @@ const messageStyle = isAuthor ? "message_is-author" : 'message';
 </script>
 
 <style scoped>
-
 .message {
   background: slateblue;
   color: aliceblue;
@@ -50,20 +49,15 @@ const messageStyle = isAuthor ? "message_is-author" : 'message';
   left: 250px;
   margin: 5px;
 }
+
 .message__body {
   display: flex;
   flex-direction: row;
 }
 
-.message__user {
+.message__user {}
 
-}
-.message__text {
+.message__text {}
 
-}
-
-.message__time {
-
-}
-
+.message__time {}
 </style>

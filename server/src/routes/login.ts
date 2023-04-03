@@ -1,17 +1,10 @@
 import express from "express";
 
-
 const router = express.Router();
 
-router.get('/',(req,res) => {
-        console.log(req,'GET REQ!')
-})
-router.post('/login',(req, res) => {
-        console.log('here post!')
-        const {username} = req.body
-        console.log(username, 'username')
-        res.send(JSON.stringify({})).status(200)
-})
+router.route("/").post((req, res) => {
+  const { username } = req.body;
+  res.json({ username }).status(200);
+});
 
-
-export default router
+export default router;

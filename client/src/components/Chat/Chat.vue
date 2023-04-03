@@ -4,9 +4,9 @@
       <message v-for="message in messages" :message="message"></message>
     </div>
     <div class="chat-input__container">
-    <div class="chat-input">
-      <input>
-    </div>
+      <div class="chat-input">
+        <input>
+      </div>
       <div class="chat-send-button">
         <button>send</button>
       </div>
@@ -21,14 +21,19 @@
 <script setup lang="ts">
 
 import Message from "./Message.vue";
-import {TMessage} from "../../common/types";
-const messages: TMessage[] = [{username: 'HAsbik', text: 'Hello, world!', time: Date.now()},{username: 'ya', text: 'Hello, world!', time: Date.now()},{username: 'HAsbik', text: 'Hello, world!', time: Date.now()}]
+import { TMessage } from "../../common/types";
 
-import {socket} from "../../api/socket";
+const messages: TMessage[] = [{ username: "HAsbik", text: "Hello, world!", time: Date.now() }, {
+  username: "ya",
+  text: "Hello, world!",
+  time: Date.now()
+}, { username: "HAsbik", text: "Hello, world!", time: Date.now() }];
 
-function connect(){
-  console.log(socket,'socket')
-  socket.connect()
+import { socket } from "../../api/socket";
+
+function connect() {
+  console.log(socket, "socket");
+  socket.connect();
 }
 
 </script>
@@ -45,6 +50,7 @@ function connect(){
   border: 3px #ff9c9c solid;
   border-radius: 10px;
 }
+
 .chat-messages__container {
   width: 400px;
   height: 700px;
@@ -54,18 +60,19 @@ function connect(){
 }
 
 .chat-input__container {
-    display: flex;
-    flex-direction: row;
-    height: 30px;
-    width: fit-content;
-    border-radius: 5px;
-    font-size: 20px;
-    margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  width: fit-content;
+  border-radius: 5px;
+  font-size: 20px;
+  margin-bottom: 30px;
 }
 
 .chat-input {
   border: 2px solid #6a5acd;
 }
+
 .chat-send-button {
 
 }
