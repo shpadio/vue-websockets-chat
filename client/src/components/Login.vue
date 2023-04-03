@@ -7,7 +7,7 @@
       <input v-model="inputValue" placeholder="" />
     </div>
     <div class="card-button">
-      <button @click="loginFunc()">Continue</button>
+      <button @click="login(inputValue)">Continue</button>
     </div>
   </div>
 </template>
@@ -17,12 +17,6 @@ import { ref } from "vue";
 import { login } from "../api/login";
 
 const inputValue = ref("");
-
-async function loginFunc() {
-  return await login(inputValue.value);
-}
-
-
 </script>
 
 <style scoped>
