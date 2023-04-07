@@ -1,5 +1,7 @@
 import { reactive } from "vue";
 import { SERVER_URL } from "../common/constants";
+import { store } from "../store/store";
+import { TUser } from "../common/types";
 
 type TLoginState = {
   isLogged: boolean;
@@ -7,12 +9,11 @@ type TLoginState = {
 }
 
 export const loginState: TLoginState = reactive({
-  isLogged: false,
-  username: ""
+  isLogged: true,
+  username: "Oleg"
 });
 
 export const login = async (username: string) => {
-  console.log(username, "USERNAME");
   const response = await fetch(`http://${SERVER_URL}/login`, {
     method: "POST",
     headers: {
@@ -21,11 +22,10 @@ export const login = async (username: string) => {
     },
     body: JSON.stringify({ username })
   });
-  const result = await response.json();
+  const result: { user: TUser } = await response.json();
 
-  if (result.username) {
-    loginState.isLogged = true;
-    loginState.username = username;
+  if (result.user) {
+    store.commit("login", result.user);
   }
 };
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <form class="card">
     <div class="card-title">
       Enter your username
     </div>
@@ -7,9 +7,9 @@
       <input v-model="inputValue" placeholder="" />
     </div>
     <div class="card-button">
-      <button @click="login(inputValue)">Continue</button>
+      <button type="submit" @click="login(inputValue)">Continue</button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script setup lang="ts">

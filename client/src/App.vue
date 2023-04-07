@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import Login from "./components/Login.vue";
 import Chat from "./components/Chat/Chat.vue";
-import { loginState } from "./api/login";
+import { computed } from "vue";
+
 
 </script>
 
 <template class="app">
-  <login v-if="!loginState.isLogged" />
+  <login v-if="!this.$store.getters.isUserLogged(user)" />
   <chat v-else />
 </template>
 

@@ -20,7 +20,11 @@ export const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
+  console.log(socket);
   console.log(`${socket} is connected`);
+  socket.on("message", (message) => {
+    socket.broadcast.emit("message", message);
+  });
 });
 
 server.listen(port, () => {

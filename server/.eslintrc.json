@@ -10,9 +10,11 @@
         },
         "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
         "rules": {
+            ""
             "max-len": "off",
             "no-underscore-dangle": "off",
             "arrow-body-style": "off",
+            "comma-dangle": "true"
             "@typescript-eslint/no-explicit-any": "off",
             "@typescript-eslint/no-unsafe-assignment": "off",
             "@typescript-eslint/no-unsafe-member-access": "off",

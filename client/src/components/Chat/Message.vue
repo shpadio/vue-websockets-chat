@@ -15,15 +15,19 @@
 </template>
 
 <script setup lang="ts">
-interface IMessageProps {
-  message: TMessage
-}
-import { TMessage } from "../../common/types";
-const props = defineProps<IMessageProps>();
-const { message: { username, text, time } } = props
-const isAuthor = username === 'ya';
+import { loginState } from "../../api/login";
 
-const messageStyle = isAuthor ? "message_is-author" : 'message';
+interface IMessageProps {
+  message: TMessage;
+}
+
+import { TMessage } from "../../common/types";
+
+const props = defineProps<IMessageProps>();
+const { message: { username, text, time } } = props;
+const isAuthor = username === loginState.username;
+
+const messageStyle = isAuthor ? "message_is-author" : "message";
 
 </script>
 
@@ -55,9 +59,12 @@ const messageStyle = isAuthor ? "message_is-author" : 'message';
   flex-direction: row;
 }
 
-.message__user {}
+.message__user {
+}
 
-.message__text {}
+.message__text {
+}
 
-.message__time {}
+.message__time {
+}
 </style>

@@ -1,19 +1,31 @@
 import { io, Socket } from "socket.io-client";
-import { reactive } from "vue";
 import { SERVER_URL } from "../common/constants";
+import { store } from "../store/store";
 
-type TSocketState = {
-  connected: boolean;
+
+class SocketApi {
+  socket: Socket;
+
+  constructor(socket: Socket) {
+    this.socket = socket;
+
+  };
+
+  sendMessage(message: string) {
+    socket.send(message);
+  }
 }
-
-const state: TSocketState = reactive({
-  connected: false
-});
 
 export const socket: Socket = io(SERVER_URL);
 
 socket.on("connect", () => {
-  state.connected = true;
+  store.commit("connect");
   console.log("connected on client!");
+});
+
+socket.on("message", (message) => {
 
 });
+
+
+export const socketApi = new SocketApi(socket);

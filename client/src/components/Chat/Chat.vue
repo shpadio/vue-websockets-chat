@@ -5,35 +5,32 @@
     </div>
     <div class="chat-input__container">
       <div class="chat-input">
-        <input>
+        <input v-model="messageText">
       </div>
       <div class="chat-send-button">
-        <button>send</button>
-      </div>
-      <div class="chat-send-button">
-        <button @click="connect">connect</button>
+        <button @click="sendMessage(messageText)">send</button>
       </div>
     </div>
   </div>
-
 </template>
 
 <script setup lang="ts">
 
 import Message from "./Message.vue";
 import { TMessage } from "../../common/types";
+import { ref } from "vue";
+import { socketApi } from "../../api/socket";
 
 const messages: TMessage[] = [{ username: "HAsbik", text: "Hello, world!", time: Date.now() }, {
-  username: "ya",
+  username: "Oleg",
   text: "Hello, world!",
   time: Date.now()
 }, { username: "HAsbik", text: "Hello, world!", time: Date.now() }];
 
-import { socket } from "../../api/socket";
+const messageText = ref("");
 
-function connect() {
-  console.log(socket, "socket");
-  socket.connect();
+function sendMessage(message: string) {
+  socketApi.sendMessage(message);
 }
 
 </script>
