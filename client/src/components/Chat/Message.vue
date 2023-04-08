@@ -15,17 +15,22 @@
 </template>
 
 <script setup lang="ts">
-import { loginState } from "../../api/login";
+
+import { key } from "../../store/store";
 
 interface IMessageProps {
   message: TMessage;
 }
 
 import { TMessage } from "../../common/types";
+import { useStore } from "vuex";
 
 const props = defineProps<IMessageProps>();
 const { message: { username, text, time } } = props;
-const isAuthor = username === loginState.username;
+
+const store = useStore(key);
+
+const isAuthor = username === store.getters.getUsername;
 
 const messageStyle = isAuthor ? "message_is-author" : "message";
 

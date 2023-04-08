@@ -1,5 +1,5 @@
 <template class="app">
-  <login v-if="!isLogged" />
+  <login v-if="false" />
   <chat v-else />
 </template>
 
@@ -7,13 +7,10 @@
 import Login from "./components/Login.vue";
 import Chat from "./components/Chat/Chat.vue";
 import { computed } from "vue";
-import { useStore } from "vuex";
-import { key } from "./store/store";
+import { store } from "./store/store";
 
-const store = useStore(key);
-const isLogged = computed(() => store.getters.isUserLogged());
-
-
+const userId = computed(() => store.user.id);
+const isLogged = computed(() => store.getters.isUserLogged(userId)).value;
 </script>
 
 <style scoped>

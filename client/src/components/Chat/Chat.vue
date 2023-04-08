@@ -17,15 +17,13 @@
 <script setup lang="ts">
 
 import Message from "./Message.vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { socketApi } from "../../api/socket";
+import { useStore } from "vuex";
+import { key } from "../../store/store";
 
-//const messages: TMessage[] = [{ username: "HAsbik", text: "Hello, world!", time: Date.now() }, {
-//  username: "Oleg",
-//  text: "Hello, world!",
-//  time: Date.now()
-//}, { username: "HAsbik", text: "Hello, world!", time: Date.now() }];
-
+const store = useStore(key);
+const messages = computed(() => store.getters.getMessages);
 const messageText = ref("");
 
 function sendMessage(message: string) {

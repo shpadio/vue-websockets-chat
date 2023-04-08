@@ -1,5 +1,6 @@
 import { io, Socket } from "socket.io-client";
 import { SERVER_URL } from "../common/constants";
+import { TMessage } from "../common/types";
 import { store } from "../store/store";
 
 
@@ -12,7 +13,7 @@ class SocketApi {
   };
 
   sendMessage(message: string) {
-    socket.send(message);
+    this.socket.send(message);
   }
 }
 
@@ -23,8 +24,10 @@ socket.on("connect", () => {
   console.log("connected on client!");
 });
 
-socket.on("message", (message) => {
-
+socket.on("message", (message: TMessage) => {
+  debugger;
+  console.log(message, "message from server");
+  store.commit("addMessage", message);
 });
 
 

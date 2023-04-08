@@ -13,6 +13,14 @@ app.use("/login", loginRouter);
 const server = http.createServer(app);
 const port = process.env.PORT || 8090;
 
+
+export type TMessage = {
+  username: string;
+  time: number
+  text: string
+}
+
+
 export const io = new Server(server, {
   cors: {
     origin: "http://localhost:5173"
@@ -20,10 +28,11 @@ export const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-//  console.log(socket);
   console.log(`${socket} is connected`);
-  socket.on("message", (message) => {
-    socket.broadcast.emit("message", message);
+  socket.on("message", (message: string) => {
+    console.log(message, "mess");
+    const payload: TMessage = { username: "Kto to", text: message, time: Date.now() };
+    socket.broadcast.emit("message", payload);
   });
 });
 

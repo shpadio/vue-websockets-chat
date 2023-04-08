@@ -7,3 +7,5 @@ import { key, store } from "./store/store";
 createApp(App)
   .use(store, key)
   .mount("#app");
+
+

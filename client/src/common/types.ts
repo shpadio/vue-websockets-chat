@@ -29,11 +29,11 @@ export type TAppState = {
 export type TAppStore = {
   state: TAppState,
   getters: {
-    isUserLogged: (state: TAppState, id: string) => boolean;
+    isUserLogged: (id: string) => boolean;
   },
   mutations: {
-    connect: (state: TAppState) => void;
-    login: (state: TAppState, user: TUser) => void;
-    addMessage: (state: TAppState, message: TMessage) => void;
+    connect: () => void;
+    login: (user: TUser) => void;
+    addMessage: (message: TMessage) => void;
   },
 }
